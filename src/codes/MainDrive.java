@@ -95,11 +95,31 @@ public class MainDrive {
 			}
 		}
 
+		// 보너스 번호 (1개)
+		int bonusNum = 0;
+
+		while (true) {
+			int randomNum = (int) (Math.random() * 45) + 1;
+
+			boolean isDuplOk = true;
+
+			for (int num : winNumbers) {
+				if (num == randomNum) {
+					isDuplOk = false;
+					break;
+				}
+			}
+			if (isDuplOk) {
+				bonusNum = randomNum;
+				break;
+			}
+		}
+
 		// 당첨번호 출력
 		for (int winNum : winNumbers) {
 			System.out.print(winNum + " ");
 		}
-		
+
 		System.out.println();
 
 		// 입력값과 당첨번호를 비교하여 등수 판별
