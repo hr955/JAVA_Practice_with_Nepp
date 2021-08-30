@@ -116,10 +116,12 @@ public class MainDrive {
 		}
 
 		// 당첨번호 출력
+		
+		System.out.println("\n- 당첨번호 -");
 		for (int winNum : winNumbers) {
 			System.out.print(winNum + " ");
 		}
-
+		System.out.print("+ " + bonusNum);
 		System.out.println();
 
 		// 입력값과 당첨번호를 비교하여 등수 판별
@@ -135,7 +137,8 @@ public class MainDrive {
 				}
 			}
 		}
-
+		
+		System.out.println("\n- 추첨 결과 -");
 		// 맞춘 번호의 개수에 따라 등수 출력
 		if (correctNumCnt == 6) {
 			System.out.println("1등 - 10억");
