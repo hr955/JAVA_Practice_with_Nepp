@@ -57,13 +57,28 @@ public class MainDrive {
 		for (int i = 0; i < winNumbers.length; i++) {
 			while (true) {
 				// 1~45 사이의 난수 생성
+
 				// 범위검사 필요X
+
+				// Math.random = 0.0 ~ 0.99999999999... 사이의 랜던값을 추출
+				// Math.random * 45 = 0.0 ~ 44.99999999999... 사이의 랜던값을 추출
+
+				// 1 ~ 45 사이의 난수 발생
+				int randomNum = (int) (Math.random() * 45) + 1;
 
 				// 중복검사는 필요
 				boolean isDuplOk = true;
 
+				for (int winNum : winNumbers) {
+					if (winNum == randomNum) {
+						// 중복 발견
+						isDuplOk = false;
+						break;
+					}
+				}
+
 				if (isDuplOk) {
-					// winNumbers[i] = 난수 입력
+					winNumbers[i] = randomNum;
 					break;
 				}
 			}
