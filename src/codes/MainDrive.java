@@ -140,7 +140,21 @@ public class MainDrive {
 		if (correctNumCnt == 6) {
 			System.out.println("1등 - 10억");
 		} else if (correctNumCnt == 5) {
-			System.out.println("3등 - 200만원");
+			// 보너스번호 맞췄는지 판별
+			boolean isBonusCorrect = false;
+
+			for (int myNum : inputNumbers) {
+				if (myNum == bonusNum) {
+					isBonusCorrect = true;
+					break;
+				}
+			}
+
+			if (isBonusCorrect) {
+				System.out.println("2등 - 4천만원");
+			} else {
+				System.out.println("3등 - 200만원");
+			}
 		} else if (correctNumCnt == 4) {
 			System.out.println("4등 - 5만원");
 		} else if (correctNumCnt == 3) {
