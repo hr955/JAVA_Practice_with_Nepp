@@ -50,6 +50,23 @@ public class MainDrive {
 			}
 		}
 		scanner.close();
-	}
 
+		// 입력 완료 => 당첨번호(난수) 6개 생성
+		int[] winNumbers = new int[6];
+
+		for (int i = 0; i < winNumbers.length; i++) {
+			while (true) {
+				// 1~45 사이의 난수 생성
+				// 범위검사 필요X
+
+				// 중복검사는 필요
+				boolean isDuplOk = true;
+
+				if (isDuplOk) {
+					// winNumbers[i] = 난수 입력
+					break;
+				}
+			}
+		}
+	}
 }
