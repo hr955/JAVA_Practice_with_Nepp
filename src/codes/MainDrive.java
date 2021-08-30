@@ -22,17 +22,23 @@ public class MainDrive {
 				int inputNum = scanner.nextInt();
 
 				// 숫자범위 검사 변수
-				boolean isRangeOk = (1 <= inputNum) && (inputNum <= 45); 
+				boolean isRangeOk = (1 <= inputNum) && (inputNum <= 45);
 
 				// 중복 검사 변수
-				boolean isDuplOk = true; 
+				boolean isDuplOk = true;
+				for (int input : inputNumbers) {
+					if (input == inputNum) {
+						isDuplOk = false;
+						break;
+					}
+				}
 
 				// 입력값의 범위가 0<input<45 이고, 중복이 아닐 때
 				if (isRangeOk && isDuplOk) {
 					inputNumbers[i] = inputNum;
 					break;
 				} else {
-					System.out.print("잘못된 숫자입니다. 다시 입력해주세요.");
+					System.out.println("잘못된 숫자입니다. 다시 입력해주세요.");
 				}
 			}
 		}
