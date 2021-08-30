@@ -84,10 +84,23 @@ public class MainDrive {
 			}
 		}
 
+		// 버블정렬
+		for (int i = 0; i < winNumbers.length; i++) {
+			for (int j = 0; j < winNumbers.length - 1; j++) {
+				if (winNumbers[j] > winNumbers[j + 1]) {
+					int temp = winNumbers[j];
+					winNumbers[j] = winNumbers[j + 1];
+					winNumbers[j + 1] = temp;
+				}
+			}
+		}
+
 		// 당첨번호 출력
 		for (int winNum : winNumbers) {
 			System.out.print(winNum + " ");
 		}
+		
+		System.out.println();
 
 		// 입력값과 당첨번호를 비교하여 등수 판별
 
@@ -105,13 +118,13 @@ public class MainDrive {
 
 		// 맞춘 번호의 개수에 따라 등수 출력
 		if (correctNumCnt == 6) {
-			System.out.println("1등");
+			System.out.println("1등 - 10억");
 		} else if (correctNumCnt == 5) {
-			System.out.println("3등");
+			System.out.println("3등 - 200만원");
 		} else if (correctNumCnt == 4) {
-			System.out.println("4등");
+			System.out.println("4등 - 5만원");
 		} else if (correctNumCnt == 3) {
-			System.out.println("5등");
+			System.out.println("5등 - 5천원");
 		} else {
 			System.out.println("낙첨");
 		}
