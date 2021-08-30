@@ -21,8 +21,11 @@ public class MainDrive {
 				System.out.print((i + 1) + "번째 숫자 입력 : ");
 				int inputNum = scanner.nextInt();
 
-				boolean isRangeOk = true; // 숫자범위 검사 변수
-				boolean isDuplOk = true; // 중복 검사 변수
+				// 숫자범위 검사 변수
+				boolean isRangeOk = (1 <= inputNum) && (inputNum <= 45); 
+
+				// 중복 검사 변수
+				boolean isDuplOk = true; 
 
 				// 입력값의 범위가 0<input<45 이고, 중복이 아닐 때
 				if (isRangeOk && isDuplOk) {
