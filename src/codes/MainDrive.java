@@ -83,5 +83,38 @@ public class MainDrive {
 				}
 			}
 		}
+
+		// 당첨번호 출력
+		for (int winNum : winNumbers) {
+			System.out.print(winNum + " ");
+		}
+
+		// 입력값과 당첨번호를 비교하여 등수 판별
+
+		int correctNumCnt = 0; // 내가 맞춘 번호 개수
+
+		for (int myNum : inputNumbers) {
+			// 내가 선택한 번호를 하나 뽑아 당첨번호와 비교
+			for (int winNum : winNumbers) {
+				// 내 번호와 당첨번호가 일치하는지 비교
+				if (myNum == winNum) {
+					correctNumCnt++;
+				}
+			}
+		}
+
+		// 맞춘 번호의 개수에 따라 등수 출력
+		if (correctNumCnt == 6) {
+			System.out.println("1등");
+		} else if (correctNumCnt == 5) {
+			System.out.println("3등");
+		} else if (correctNumCnt == 4) {
+			System.out.println("4등");
+		} else if (correctNumCnt == 3) {
+			System.out.println("5등");
+		} else {
+			System.out.println("낙첨");
+		}
+
 	}
 }
