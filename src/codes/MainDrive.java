@@ -1,5 +1,9 @@
 package codes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDrive {
@@ -42,7 +46,6 @@ public class MainDrive {
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -76,6 +79,28 @@ public class MainDrive {
 
 	// 가공된 String을 파일에 추가하는 함수
 	static void savePhoneNumToFile(String content) {
+
+		// 가공된 String을 myPhoneBook.csv 파일에 저장
+		File myFile = new File("myPhoneBook.csv");
+
+		try {
+			// 지정된 파일에, 데이터 작성을 해주는 클래스 (FileWriter) -> 예외처리 필요
+			FileWriter fw = new FileWriter(myFile, true);
+
+			// FileWriter는 2byte씩 데이터 처리 -> 한글자씩
+			// 한문장씩 입력하기 위해 보조도구 활용 (BufferedWriter)
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			// 보조도구로 저장할 내용을 한번에 한줄 저장
+			bw.append(content);
+			// 줄바꾸기
+			bw.newLine();
+			bw.close();
+			fw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
