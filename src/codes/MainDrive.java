@@ -187,6 +187,12 @@ public class MainDrive {
 
 			while (true) {
 				String line = br.readLine();
+				
+				if( line == null ){
+					// 해당 데이터가 존재하지 않는 경우
+					System.out.println(String.format("'%s' 정보가 없습니다.", name));
+					break;
+				}
 
 				// 읽어온 라인에 검색어가 포함되어 있는 경우
 				if (line.contains(name)) {
@@ -200,11 +206,7 @@ public class MainDrive {
 						System.out.println();
 						break;
 					}
-				} else {
-					// 해당 데이터가 존재하지 않는 경우
-					System.out.println(String.format("'%s' 정보가 없습니다.", name));
-					break;
-				}
+				} 
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("전화번호가 비어있습니다.");
