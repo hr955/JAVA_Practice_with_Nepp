@@ -1,12 +1,7 @@
 package codes;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 import codes.datas.UserData;
 
@@ -118,20 +113,48 @@ public class MainDrive {
 
 		// 파일을 읽으면서 -> 읽어온정볼르 -> UserData로 변환 -> userList에 추가
 		addUsersByFile(userList);
-		
 
 		// userList목록에 들어있는 항목들을 출력
 		for (UserData user : userList) {
 			System.out.println(user);
 		}
 
-		File myFile = new File("myPhoneBook.csv");
-
 	}
 
 	static void addUsersByFile(List<UserData> list) {
 		// 목록을 담아주고싶은 List를 받아 추가
-		
+
+		// 파일에 적힌 내용을 list에 추가
+		File myFile = new File("myPhoneBook.csv");
+
+		try {
+			// 지정된 파일을 (2byte - 한글자씩) 읽어주는 클래스 -> 예외처리 필요
+			FileReader fr = new FileReader(myFile);
+			// 한문장씩 String으로 뭉쳐서 읽어오게 하는 보조도구 (BufferedReader)
+			BufferedReader br = new BufferedReader(fr);
+
+			// br이 한줄씩 읽어오게. 몇줄이나 있을지 알 수 없다. -> 무한반복+break;
+			while (true) {
+				// 한줄 읽어와서 변수에 담기 -> 예외처리 필요 (이미 try-catch안에서 작업중 : add catch)
+				String line = br.readLine();
+
+				// 읽어온 line이 null이면, 더이상 읽어올 내용이 없다.
+				if (line == null) {
+					// while 종료
+					break;
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			System.out.println("전화번호가 비어있습니다.");
+			System.out.println("전화번호부 파일이 생성되지 않았습니다.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("파일은 잘 불러왔지만, 내용을 읽어올 때 손상된 부분이 있습니다.");
+			e.printStackTrace();
+		}
+
 	}
 
 }
