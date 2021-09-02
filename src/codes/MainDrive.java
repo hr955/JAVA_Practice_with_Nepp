@@ -20,7 +20,7 @@ public class MainDrive {
 			System.out.println("2. 전화번호 목록 조회");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("=======================");
-			System.out.println("메뉴 입력 : ");
+			System.out.print("메뉴 입력 : ");
 
 			int inputMenu = scanner.nextInt();
 
@@ -48,11 +48,23 @@ public class MainDrive {
 			}
 
 		}
+		scanner.close();
 		System.out.println("프로그램을 종료합니다.");
 	}
 
 	// 전화번호 추가 관련 코드 함수
 	static void addPhoneNum() {
+		// 이름, 전화번호, 출생년도를 순서대로 입력
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("이름 입력 : ");
+		String name = scanner.next();
+
+		System.out.print("전화번호 입력 : ");
+		String phoneNum = scanner.next();
+
+		System.out.print("출생년도 입력 : ");
+		int birthYear = scanner.nextInt();
 
 	}
 
