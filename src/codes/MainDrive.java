@@ -95,6 +95,7 @@ public class MainDrive {
 			bw.append(content);
 			// 줄바꾸기
 			bw.newLine();
+
 			bw.close();
 			fw.close();
 
@@ -106,6 +107,10 @@ public class MainDrive {
 
 	// 전화번호 목록 조회 함수
 	static void showAllPhoneNum() {
+		// ArrayList에 사용자뎅녀 UserData목록을 담아주기
+		// UserData클래스 추가
+
+		File myFile = new File("myPhoneBook.csv");
 
 	}
 
