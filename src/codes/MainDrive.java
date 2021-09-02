@@ -4,7 +4,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import codes.datas.UserData;
 
 public class MainDrive {
 	public static void main(String[] args) {
@@ -110,8 +114,24 @@ public class MainDrive {
 		// ArrayList에 사용자뎅녀 UserData목록을 담아주기
 		// UserData클래스 추가
 
+		List<UserData> userList = new ArrayList<>();
+
+		// 파일을 읽으면서 -> 읽어온정볼르 -> UserData로 변환 -> userList에 추가
+		addUsersByFile(userList);
+		
+
+		// userList목록에 들어있는 항목들을 출력
+		for (UserData user : userList) {
+			System.out.println(user);
+		}
+
 		File myFile = new File("myPhoneBook.csv");
 
+	}
+
+	static void addUsersByFile(List<UserData> list) {
+		// 목록을 담아주고싶은 List를 받아 추가
+		
 	}
 
 }
