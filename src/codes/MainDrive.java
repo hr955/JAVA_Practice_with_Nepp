@@ -17,15 +17,16 @@ public class MainDrive {
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
-
 			System.out.println("========전화번호부========");
 			System.out.println("1. 전화번호 추가");
 			System.out.println("2. 전화번호 목록 조회");
+			System.out.println("3. 이름으로 검색");
 			System.out.println("0. 프로그램 종료");
 			System.out.println("=======================");
 			System.out.print("메뉴 입력 : ");
 
 			int inputMenu = scanner.nextInt();
+			System.out.println();
 
 			if (inputMenu == 0) {
 				// 프로그램 종료 -> while문 종료
@@ -37,6 +38,10 @@ public class MainDrive {
 			} else if (inputMenu == 2) {
 				// 전화번호 목록 조회
 				showAllPhoneNum();
+
+			} else if (inputMenu == 3) {
+				// 이름으로 정보 조회
+				searchByName();
 
 			} else {
 				System.out.println("잘못된 입력입니다. 메뉴로 돌아갑니다..");
@@ -67,6 +72,8 @@ public class MainDrive {
 
 		System.out.print("출생년도 입력 : ");
 		int birthYear = scanner.nextInt();
+
+		System.out.println();
 
 		// 정보들을 한줄로 모아주기 -> "이름, 전화번호, 출생년도" 형태
 		String content = String.format("%s,%s,%d", name, phoneNum, birthYear);
@@ -118,6 +125,7 @@ public class MainDrive {
 		for (UserData user : userList) {
 			System.out.println(user);
 		}
+		System.out.println();
 
 	}
 
@@ -153,6 +161,51 @@ public class MainDrive {
 
 			}
 
+		} catch (FileNotFoundException e) {
+			System.out.println("전화번호가 비어있습니다.");
+			System.out.println("전화번호부 파일이 생성되지 않았습니다.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("파일은 잘 불러왔지만, 내용을 읽어올 때 손상된 부분이 있습니다.");
+			e.printStackTrace();
+		}
+
+	}
+
+	// 이름으로 사용자 정보 검색하는 메소드
+	static void searchByName() {
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("이름 입력 : ");
+		String name = scanner.next();
+
+		File myFile = new File("myPhoneBook.csv");
+
+		try {
+			FileReader fr = new FileReader(myFile);
+			BufferedReader br = new BufferedReader(fr);
+
+			while (true) {
+				String line = br.readLine();
+
+				// 읽어온 라인에 검색어가 포함되어 있는 경우
+				if (line.contains(name)) {
+					String[] userInfo = line.split(",");
+					// 검색어를 포함하지만 일치하지는 않는경우 제거(ex 검색어 : 해리 / 파일에 존재하는 데이터 : 해리포터)
+					// 검색어와 이름이 완전히 일치하는 경우에만 데이터 출력
+					if (name.equals(userInfo[0])) {
+						UserData userData = new UserData(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2]));
+						System.out.println(String.format("%s(%s세) - %s", userData.getName(), userData.getKoreanAge(),
+								userData.getPhoneNum()));
+						System.out.println();
+						break;
+					}
+				} else {
+					// 해당 데이터가 존재하지 않는 경우
+					System.out.println(String.format("'%s' 정보가 없습니다.", name));
+					break;
+				}
+			}
 		} catch (FileNotFoundException e) {
 			System.out.println("전화번호가 비어있습니다.");
 			System.out.println("전화번호부 파일이 생성되지 않았습니다.");
