@@ -144,6 +144,13 @@ public class MainDrive {
 					break;
 				}
 
+				// break를 안만남 -> 읽어올 내용이 있음
+				// "이름,전화번호,출생년도" 양식의 스트링을 ","기준으로 분리
+				String[] userInfo = line.split(",");
+
+				// userInfo를 UserData 객체 생성자의 파라미터로 대입 -> list에 추가
+				list.add(new UserData(userInfo[0], userInfo[1], Integer.parseInt(userInfo[2])));
+
 			}
 
 		} catch (FileNotFoundException e) {
